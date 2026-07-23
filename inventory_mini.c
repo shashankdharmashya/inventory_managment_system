@@ -1,4 +1,4 @@
-#define _POSIX_C_SOURCE 200809L  
+ 
 #include <stdio.h>
 #include <string.h>
 #include <strings.h> 
@@ -74,12 +74,6 @@ void pause_console() {
     getchar();
 }
 
-/* Reads a line into buf, re-prompting until it is non-empty and contains
-   no '|' character. '|' is the field delimiter used by saveToFile()/
-   loadFromFile(); letting it through corrupts that record (and can even
-   wipe out every record that follows on the next load). An empty string
-   is also rejected because fscanf's "%[^|]" pattern used when loading
-   cannot match zero characters, which silently drops the record. */
 void readValidatedField(char *buf, size_t size, const char *fieldName) {
     for (;;) {
         fgets(buf, (int)size, stdin);
